@@ -1,39 +1,58 @@
 #include <stdio.h>
-int main(){
-  char op[4][10],a1[4][10],a2[4][10],res[4][10];
-  int i=0,j;
-  
-   //c+d
-  sprintf(op[i],"+");
-  sprintf(a1[i],"C");
-  sprintf(a2[i],"D");
-  sprintf(res[i],"T%d",i+1);
-  i++;
-  
-  //-B
-  sprintf(op[i],"uminus");
-  sprintf(a1[i],"B");
-  sprintf(a2[i],"_");
-  sprintf(res[i],"T%d",i+1);
-  i++;
+#include <string.h>
+#include <stdlib.h>
 
-  //t2*t1
-  sprintf(op[i],"*");
-  sprintf(a1[i],"T2");
-  sprintf(a2[i],"T1");
-  sprintf(res[i],"T%d",i+1);
-  i++;
-  
-  //t3=a
-  sprintf(op[i],"=");
-  sprintf(a1[i],"T3");
-  sprintf(a2[i],"_");
-  sprintf(res[i],"A");
-  i++;
-  
-  printf("Operator\tArg1\t\tArg2\t\tResult\n");
-  for(j=0;j<i;j++)
-    printf("%s\t\t%s\t\t%s\t\t%s\n",op[j],a1[j],a2[j],res[j]);
-    
+int i=0;
+char inp[10];
+
+int S();
+int A();
+
+int main(){
+  int k;
+  printf("enter input : ");
+  scanf("%s",inp);
+  k=S();
+  if(k==1 && inp[i]=='\0') 
+    printf("parsed");
+  else 
+    printf("invalid");
+  return 0;
+} 
+
+int S(){
+  if(inp[i]=='c'){
+    i++;
+    A();
+    if(inp[i]=='d'){
+      i++;
+      return 1;
+    } 
+    else return 0;
+  }else return 0;
   return 0;
 }
+
+int A(){
+  int save=i;
+  if(inp[i]=='a'){
+    i++;
+    if(inp[i]=='b'){
+      i++;
+      return 1;
+    }
+  }
+  i=save;
+  if(inp[i]=='a'){
+    i++;
+    return 1;
+  }
+  i=save;
+  return 0;
+}
+
+
+
+
+
+
